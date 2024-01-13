@@ -1,0 +1,12 @@
+- name: Desktop environment
+  hosts: odhosts
+  tasks:
+   - name: Install KDE
+     become: true
+     ansible.builtin.apt:
+       pkg:
+         - kde-plasma-desktop
+         - gwenview
+         - kate
+         - okular
+         - dolphin

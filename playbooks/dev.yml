@@ -1,0 +1,26 @@
+- name: Development environment
+  hosts: odhosts
+  tasks:
+    - name: Install essential cmd tools - alacritty, git, tmux,
+      become: true
+      ansible.builtin.apt:
+        pkg:
+          - alacritty
+          - git
+          - tmux
+    - name: Install build tools - make
+      become: true
+      ansible.builtin.apt:
+        pkg:
+          - make
+    - name: Enable debian bookworm backports
+      become: true
+      ansible.builtin.apt_repository:
+        repo: deb http://deb.debian.org/debian bookworm-backports main
+        state: present
+        filename: backports
+    - name: Install golang from backports
+      become: true
+      ansible.builtin.apt:
+        name: golang
+        default_release: bookworm-backports

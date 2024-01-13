@@ -8,11 +8,16 @@
           - alacritty
           - git
           - tmux
-    - name: Install build tools - make
+    - name: Install build tools - make, cmake, gcc, g++, clang, libc6-dev
       become: true
       ansible.builtin.apt:
         pkg:
           - make
+          - cmake
+          - gcc
+          - g++
+          - clang
+          - libc6-dev
     - name: Enable debian bookworm backports
       become: true
       ansible.builtin.apt_repository:

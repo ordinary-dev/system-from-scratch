@@ -24,3 +24,10 @@
       ansible.builtin.apt:
         name: golang
         default_release: bookworm-backports
+    - name: Install python
+      become: true
+      ansible.builtin.apt:
+        pkg:
+          - python3
+          - python3-venv
+          - python3-pip

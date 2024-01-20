@@ -18,3 +18,10 @@ Note that `inventory.ini` is not included in the repo.
 [odhosts]
 192.168.0.1
 ```
+
+
+## Why is this repository public?
+
+This repository can serve as a source of inspiration.
+Ansible allows you not only to initially configure the system,
+but also to synchronize settings between several computers.

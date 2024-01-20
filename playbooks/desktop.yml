@@ -6,7 +6,6 @@
      ansible.builtin.apt:
        pkg:
          - kde-plasma-desktop
-         - gwenview
          - kate
          - okular
          - dolphin

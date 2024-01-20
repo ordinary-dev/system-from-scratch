@@ -1,0 +1,23 @@
+- name: Multimedia
+  hosts: odhosts
+  tasks:
+   - name: Install video/audio players
+     become: true
+     ansible.builtin.apt:
+       pkg:
+         - mpv
+         - haruna
+         - vlc
+   - name: Install image viewers and editors
+     become: true
+     ansible.builtin.apt:
+       pkg:
+         - gwenview
+         - gimp
+         - inkscape
+   - name: Install image/video processing software
+     become: true
+     ansible.builtin.apt:
+       pkg:
+         - imagemagick
+         - ffmpeg

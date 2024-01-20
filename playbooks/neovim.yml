@@ -1,0 +1,31 @@
+- name: Install neovim from source
+  hosts: odhosts
+  tasks:
+    - name: Clone neovim repository
+      ansible.builtin.git:
+        repo: https://github.com/neovim/neovim
+        dest: "{{ ansible_env.HOME }}/src/neovim"
+        version: v0.9.5
+    - name: Install build dependencies
+      become: true
+      ansible.builtin.apt:
+        pkg:
+          - ninja-build
+          - gettext
+          - cmake
+          - unzip
+          - curl
+    - name: Build neovim
+      community.general.make:
+        chdir: "{{ ansible_env.HOME }}/src/neovim"
+        params:
+          CMAKE_BUILD_TYPE: Release
+    - name: Install neovim
+      become: true
+      community.general.make:
+        chdir: "{{ ansible_env.HOME }}/src/neovim"
+        target: install
+    - name: Clone my neovim configuration
+      ansible.builtin.git:
+        repo: https://github.com/ordinary-dev/ordinary-neovim
+        dest: "{{ ansible_env.HOME }}/.config/nvim"
